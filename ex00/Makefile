@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/11 17:24:41 by ssoeno            #+#    #+#              #
-#    Updated: 2025/03/23 15:35:53 by ssoeno           ###   ########.fr        #
+#    Updated: 2025/03/23 15:42:06 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,4 +36,4 @@ re: fclean all
 
 .PHONY: valgrind
 valgrind: all
-	valgrind -q --log-fd=3 --leak-check=full --error-exitcode=1 ./$(NAME) 3>&2 &> /dev/null
+	valgrind -q --log-fd=3 --leak-check=full --error-exitcode=1 ./$(NAME)

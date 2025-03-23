@@ -5,6 +5,7 @@
 int main() {
 	Dog dog;
 	Cat cat;
+	// AbstractAnimal a; // Error: Abstract class is not allowed to be instantiated
 
 	std::cout << "Dog.getType(): " << dog.getType() << std::endl;
 	std::cout << "Cat.getType(): " << cat.getType() << std::endl;
@@ -15,6 +16,7 @@ int main() {
 	dog.makeSound();
 	std::cout << "Cat.makeSound(): ";
 	cat.makeSound();
+	std::cout << std::endl;
 
 	std::cout << std::endl;
 
