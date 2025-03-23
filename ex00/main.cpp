@@ -1,25 +1,54 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 17:30:55 by ssoeno            #+#    #+#             */
-/*   Updated: 2025/03/20 15:28:25 by ssoeno           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <iostream>
-#include "ClapTrap.hpp"
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
+
+void testNormal() {
+	const Animal *meta = new Animal();
+	const Animal *j = new Dog();
+	const Animal *i = new Cat();
+
+	std::cout << "Dog.getType(): " << j->getType() << std::endl;
+	std::cout << "Cat.getType(): " << i->getType() << std::endl;
+
+	std::cout << "Dog.makeSound(): ";
+	j->makeSound();
+
+	std::cout << "Cat.makeSound(): ";
+	i->makeSound();
+
+	std::cout << "Animal.makeSound(): ";
+	meta->makeSound();
+
+	delete meta;
+	delete j;
+	delete i;
+}
+
+void testWrong() {
+	const WrongAnimal *meta = new WrongAnimal();
+	const WrongAnimal *i = new WrongCat();
+
+	std::cout << "WrongCat.getType(): " << i->getType() << std::endl;
+
+	std::cout << "WrongCat.makeSound(): ";
+	i->makeSound();    // WrongCat's makeSound() is not called
+
+	std::cout << "WrongAnimal.makeSound(): ";
+	meta->makeSound();
+
+	delete meta;
+	delete i;    // WrongCat's destructor is not called
+}
 
 int main() {
-    ClapTrap claptrap("clap");
-    claptrap.attack("target1");
-    claptrap.takeDamage(3);
-    claptrap.beRepaired(5);
-    claptrap.attack("target2");
-    claptrap.takeDamage(12);
-    claptrap.attack("target3");
-    return 0;
+	std::cout << "[Normal test]" << std::endl;
+	testNormal();
+
+	std::cout << std::endl;
+
+	std::cout << "[Wrong test]" << std::endl;
+	testWrong();
 }
